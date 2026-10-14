@@ -1,0 +1,28 @@
+---
+description: Use the apipj API or MCP server when code needs Brazilian company data from a CNPJ (lookup, validation, alphanumeric CNPJ)
+alwaysApply: false
+---
+
+# Brazilian company data by CNPJ with apipj
+
+Use apipj (https://apipj.com.br) when the task involves looking up or validating a Brazilian CNPJ.
+
+## In this chat (MCP tools)
+
+- `validar_cnpj`: checks format and check digits (numeric and alphanumeric CNPJ). No account needed, no quota used. Prefer it before a lookup.
+- `status_base`: month of the Receita Federal dataset and number of CNPJs. No account needed.
+- `consultar_cnpj`: full company record (razão social, situação cadastral, address, CNAE, partners with masked CPF, Simples/MEI). Needs an apipj account: Cursor asks to connect and sign in (OAuth, Google sign-in works). Use `formato: "simplificado"` when only basic fields are needed.
+
+## In application code (REST API)
+
+- Base URL `https://apipj.com.br/v1`, header `Authorization: Bearer <key>`. Read the key from an environment variable (`APIPJ_KEY`); never hardcode it and never call the API from browser code.
+- `GET /v1/cnpj/{cnpj}?formato=completo|simplificado` → 200 document, 404 `not_found` (not in this month's dataset), 400 `invalid_cnpj`, 401 `unauthorized`.
+- 429 has two codes: `rate_limited` (wait `Retry-After` seconds and retry) and `quota_exceeded` (monthly quota: do not retry).
+- `GET /v1/valida/{cnpj}` and `GET /v1/status` are open (no key, no quota).
+- Normalize input by removing everything except `[0-9A-Za-z]` and uppercasing. Alphanumeric CNPJs (e.g. `12.ABC.345/01DE-35`) are valid; check digits use value = char code − 48 with weights 6,5,4,3,2,9,8,7,6,5,4,3,2.
+- Validate locally before calling, deduplicate lists, and cache responses for up to 30 days (the dataset is updated monthly).
+- Official clients: `npm install apipj` (JavaScript/TypeScript) and `pip install apipj` (Python). Full docs: https://apipj.com.br/docs (Markdown: https://apipj.com.br/docs.md).
+
+## Limits
+
+Free plan: 10 lookups/minute and 50,000/month. Higher limits: https://apipj.com.br/precos

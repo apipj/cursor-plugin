@@ -1,0 +1,13 @@
+{
+  "name": "apipj",
+  "description": "Brazilian company data by CNPJ (Receita Federal open data) inside Cursor: look up and validate CNPJs, including the new alphanumeric CNPJ, through the apipj MCP server. Free plan with 50,000 lookups/month. API CNPJ gratuita.",
+  "version": "1.0.0",
+  "logo": "assets/logo.png",
+  "homepage": "https://apipj.com.br/guias/consultar-cnpj-ia-mcp",
+  "license": "MIT",
+  "keywords": ["cnpj", "brazil", "receita-federal", "company-data", "mcp", "api-cnpj", "consultar-cnpj", "validar-cnpj"],
+  "author": {
+    "name": "apipj",
+    "url": "https://apipj.com.br"
+  }
+}
