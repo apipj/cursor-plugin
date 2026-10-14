@@ -1,5 +1,7 @@
 # apipj for Cursor: Brazilian CNPJ lookup (API CNPJ gratuita)
 
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=apipj&config=eyJ1cmwiOiJodHRwczovL2FwaXBqLmNvbS5ici9tY3AifQ==) [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_apipj_MCP-0098FF?logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=apipj&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapipj.com.br%2Fmcp%22%7D)
+
 Look up and validate Brazilian companies by CNPJ inside [Cursor](https://cursor.com), using Receita Federal open data through the [apipj](https://apipj.com.br) MCP server.
 
 ## What's included
